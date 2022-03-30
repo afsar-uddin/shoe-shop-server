@@ -1,8 +1,10 @@
 import express from "express";
 import dotenv from "dotenv"
 import products from "../shoe-shop-server/data/ProductItem.js"
+import connectDb from "./config/mongoDb.js";
 
 dotenv.config()
+connectDb();
 const app = express();
 
 
