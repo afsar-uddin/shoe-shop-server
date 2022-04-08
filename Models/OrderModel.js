@@ -3,31 +3,28 @@ import mongoose from "mongoose";
 const orderSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        require: true,
         ref: "User"
     },
     orderItems: [
         {
-            name: { type: String, required: true },
-            qty: { type: Number, required: true },
-            image: { type: String, required: true },
-            price: { type: Number, required: true },
+            name: { type: String },
+            qty: { type: Number },
+            image: { type: String },
+            price: { type: Number },
             product: {
                 type: mongoose.Schema.Types.ObjectId,
-                require: true,
                 ref: "Product"
             }
         }
     ],
     shippingAddress: {
-        address: { type: String, required: true },
-        city: { type: String, required: true },
-        postalCode: { type: String, required: true },
-        country: { type: String, required: true },
+        address: { type: String },
+        city: { type: String },
+        postalCode: { type: String },
+        country: { type: String }
     },
     paymentMethod: {
         type: String,
-        required: true,
         default: "Paypal"
     },
     paymentResult: {
@@ -38,22 +35,18 @@ const orderSchema = mongoose.Schema({
     },
     taxPrice: {
         type: Number,
-        required: true,
         default: 0.0
     },
     shippingPriece: {
         type: Number,
-        required: true,
         default: 0.0
     },
     totalPriece: {
         type: Number,
-        required: true,
         default: 0.0
     },
     isPaid: {
         type: Boolean,
-        required: true,
         default: false
     },
     paidAt: {
@@ -61,7 +54,6 @@ const orderSchema = mongoose.Schema({
     },
     isDelivered: {
         type: Boolean,
-        required: true,
         default: false
     },
     deliverAt: {
@@ -73,6 +65,6 @@ const orderSchema = mongoose.Schema({
     }
 )
 
-const User = mongoose.model("User", orderSchema)
+const Order = mongoose.model("Order", orderSchema)
 
-export default User
+export default Order
