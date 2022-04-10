@@ -3,6 +3,8 @@ import dotenv from "dotenv"
 import connectDb from "./config/mongoDb.js";
 import ImportData from "./DataImport.js";
 import cors from 'cors'
+import productRoute from "./Routes/ProductsRoute.js";
+import { errorHandler, notFound } from "./Middleware/Error.js";
 
 dotenv.config()
 connectDb();
@@ -20,6 +22,13 @@ app.use(express.json())
 
 // API import
 app.use("/api/import", ImportData)
+app.use("/api/products", productRoute)
+
+// error handler
+app.use(notFound)
+app.use(errorHandler)
+
+
 
 app.get("/", (req, res) => {
     res.send("Yes, Server is running...")
